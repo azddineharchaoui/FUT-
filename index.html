@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Football Ultimate Champion</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" /> -->
+    
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+     
+</head>
+
+<body class="flex flex-col">
+    <header class="p-2 bg-purple-400">
+        <h1 class="text-4xl font-bold text-center text-white">Football Ultimate Team</h1>
+        <div class="flex justify-center py-2">
+            <button type="button" class="rounded bg-blue-400 hover:bg-blue-600 px-6 py-2 text-xl font-medium text-white"
+                id="addPlayer">Add Player</button>
+        </div>
+    </header>
+    <!-- Zone de terrain -->
+    <section id="terrain"
+        class=" bg-[url('img/stadium_background.webp')] bg-contain lg:bg-cover bg-no-repeat w-full h-[100vh] lg:w-[80vw] lg:h-[140vh] mx-auto px-12 py-6">
+        <div class="players">
+            <div class="grid grid-cols-4 grid-rows-3 justify-items-center gap-4">
+                <div class="col-start-1 row-start-3 h-[70px] w-[50px] md:w-[120px] md:h-[160px] lg:h-[222px] lg:w-[170px]" id="LB">
+                    
+                </div>
+                <div class="col-start-2 row-start-3" id="CBL">
+                   
+                </div>
+                <div class="col-start-3 row-start-3" id="CBR">
+                  
+                </div>
+                <div class="col-start-4 row-start-3" id="RB">
+                    
+                </div>
+                <div class="col-start-1 row-start-2" id="LM">
+                    
+                </div>
+                <div class="col-start-2 row-start-2" id="CML">
+                    
+                </div>
+                <div class="col-start-3 row-start-2" id="CMR">
+                    
+                </div>
+                <div class="col-start-4 row-start-2" id="RM">
+                    
+                </div>
+                <div class="col-start-2 row-start-1" id="STL">
+                    
+                </div>
+                <div class="col-start-3 row-start-1" id="STR">
+                    
+                </div>
+            </div>
+
+
+            <div class="w-[50px] md:w-[120px] lg:w-[172px] mx-auto mt-4" id="GK">
+               
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Zone de joueurs d'échange-->
+    <section id="echange" class="">
+
+    </section>
+
+    <!-- Modal for adding a player -->
+    <div id="addModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex overflow-auto justify-center hidden">
+        <div class="  h-16 ">
+            <div class="bg-white rounded-lg shadow-lg p-6 w-96 ">
+                <h2 class="text-xl font-bold mb-4">Add Player</h2>
+
+                <label class="block mb-2" for="pName">Player Name</label>
+                <input id="pName" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4" type="text"
+                    placeholder="Player Name" />
+
+                <label class="block mb-2" for="pPhoto">Photo</label>
+                <input id="pPhoto" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4" type="text"
+                    placeholder="Photo" />
+
+                <label class="block mb-2" for="pPosition">Position</label>
+                <select id="pPosition" class="block w-full bg-gray-200 border rounded py-2 px-4">
+                    <option value="">Select the position</option> 
+                    <option value="LB">LB</option>
+                    <option value="CBL">CBL</option>
+                    <option value="CBR">CBR</option>
+                    <option value="RB">RB</option>
+                    <option value="LM">LM</option>
+                    <option value="CML">CML</option>
+                    <option value="CMR">CMR</option>
+                    <option value="RM">RM</option>
+                    <option value="STL">STL</option>
+                    <option value="STR">STR</option>
+                    <option value="GK">GK</option>
+                </select>
+
+                <label class="block mb-2" for="pNationality">Nationality</label>
+                <input id="pNationality" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
+                    type="text" placeholder="Nationality" />
+
+                <label class="block mb-2" for="pFlag">Flag</label>
+                <input id="pFlag" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4" type="text"
+                    placeholder="Flag" />
+
+                <label class="block mb-2" for="pClub">Club</label>
+                <input id="pClub" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4" type="text"
+                    placeholder="Club" />
+
+                <label class="block mb-2" for="pLogo">Logo</label>
+                <input id="pLogo" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4" type="text"
+                    placeholder="Logo" />
+
+                <label class="block mb-2" for="pRating">Rating</label>
+                <input id="pRating" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
+                    type="text" placeholder="Rating" />
+
+                <label class="block mb-2" for="pPace">Pace</label>
+                <input id="pPace" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
+                    type="text" placeholder="Pace" />
+
+                <label class="block mb-2" for="pShooting">Shooting</label>
+                <input id="pShooting" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
+                    type="text" placeholder="Shooting" />
+
+                <label class="block mb-2" for="pPassing">Passing</label>
+                <input id="pPassing" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
+                    type="text" placeholder="Passing" />
+
+                <label class="block mb-2" for="pDribbling">Dribbling</label>
+                <input id="pDribbling" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
+                    type="text" placeholder="Dribbling" />
+
+                <label class="block mb-2" for="pDefending">Defending</label>
+                <input id="pDefending" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
+                    type="text" placeholder="Defending" />
+
+                <label class="block mb-2" for="pPhysical">Physical</label>
+                <input id="pPhysical" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
+                    type="text" placeholder="Physical" />
+
+                <div class="mt-4 flex justify-end">
+                    <button class="bg-blue-500 text-white rounded px-4 py-2" id="add">Add</button>
+                    <button class="ml-2 bg-gray-400 text-white rounded px-4 py-2"
+                        onclick="closeAddModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    
+</body>
+
+</html>
