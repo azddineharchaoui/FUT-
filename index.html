@@ -25,7 +25,7 @@
         class=" bg-[url('img/stadium_background.webp')] bg-contain lg:bg-cover bg-no-repeat w-full h-[100vh] lg:w-[80vw] lg:h-[140vh] mx-auto px-12 py-6">
         <div class="players">
             <div class="grid grid-cols-4 grid-rows-3 justify-items-center gap-4">
-                <div class="col-start-1 row-start-3 h-[70px] w-[50px] md:w-[120px] md:h-[160px] lg:h-[222px] lg:w-[170px]" id="LB">
+                <div class="col-start-1 row-start-3" id="LB">
                     
                 </div>
                 <div class="col-start-2 row-start-3" id="CBL">
@@ -68,7 +68,12 @@
 
     <!-- Zone de joueurs d'échange-->
     <section id="echange" class="">
+        <div class="w-full h-[40vh] bg-gray-400 rounded mx-auto">
+            <h2 class="text-2xl font-bold text-center"> Remplacement</h2>
+            <ul class="flex ">
 
+            </ul>
+        </div>
     </section>
 
     <!-- Modal for adding a player -->
@@ -103,47 +108,47 @@
 
                 <label class="block mb-2" for="pNationality">Nationality</label>
                 <input id="pNationality" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
-                    type="text" placeholder="Nationality" />
+                    type="text" placeholder="Nationality" >
 
                 <label class="block mb-2" for="pFlag">Flag</label>
                 <input id="pFlag" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4" type="text"
-                    placeholder="Flag" />
+                    placeholder="Flag" >
 
                 <label class="block mb-2" for="pClub">Club</label>
                 <input id="pClub" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4" type="text"
-                    placeholder="Club" />
+                    placeholder="Club" >
 
                 <label class="block mb-2" for="pLogo">Logo</label>
                 <input id="pLogo" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4" type="text"
-                    placeholder="Logo" />
+                    placeholder="Logo" >
 
                 <label class="block mb-2" for="pRating">Rating</label>
                 <input id="pRating" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
-                    type="text" placeholder="Rating" />
+                    type="number" placeholder="Rating" >
 
                 <label class="block mb-2" for="pPace">Pace</label>
                 <input id="pPace" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
-                    type="text" placeholder="Pace" />
+                    type="number" placeholder="Pace" >
 
                 <label class="block mb-2" for="pShooting">Shooting</label>
                 <input id="pShooting" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
-                    type="text" placeholder="Shooting" />
+                    type="number" placeholder="Shooting" >
 
                 <label class="block mb-2" for="pPassing">Passing</label>
                 <input id="pPassing" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
-                    type="text" placeholder="Passing" />
+                    type="number" placeholder="Passing" >
 
                 <label class="block mb-2" for="pDribbling">Dribbling</label>
                 <input id="pDribbling" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
-                    type="text" placeholder="Dribbling" />
+                    type="number" placeholder="Dribbling" >
 
                 <label class="block mb-2" for="pDefending">Defending</label>
                 <input id="pDefending" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
-                    type="text" placeholder="Defending" />
+                    type="number" placeholder="Defending" >
 
                 <label class="block mb-2" for="pPhysical">Physical</label>
                 <input id="pPhysical" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
-                    type="text" placeholder="Physical" />
+                    type="number" placeholder="Physical" >
 
                 <div class="mt-4 flex justify-end">
                     <button class="bg-blue-500 text-white rounded px-4 py-2" id="add">Add</button>
@@ -153,6 +158,90 @@
             </div>
         </div>
     </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex overflow-auto justify-center hidden">
+        <div class="  h-16 ">
+            <div class="bg-white rounded-lg shadow-lg p-6 w-96 ">
+                <h2 class="text-xl font-bold mb-4">Edit Player</h2>
+
+                <label class="block mb-2" for="editName">Player Name</label>
+                <input id="editName" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4" type="text"
+                    placeholder="Player Name" />
+
+                <label class="block mb-2" for="editPhoto">Photo</label>
+                <input id="editPhoto" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4" type="text"
+                    placeholder="Photo" />
+
+                <label class="block mb-2" for="editPosition">Position</label>
+                <select id="editPosition" class="block w-full bg-gray-200 border rounded py-2 px-4">
+                    <option value="">Select the position</option> 
+                    <option value="LB">LB</option>
+                    <option value="CBL">CBL</option>
+                    <option value="CBR">CBR</option>
+                    <option value="RB">RB</option>
+                    <option value="LM">LM</option>
+                    <option value="CML">CML</option>
+                    <option value="CMR">CMR</option>
+                    <option value="RM">RM</option>
+                    <option value="STL">STL</option>
+                    <option value="STR">STR</option>
+                    <option value="GK">GK</option>
+                </select>
+
+                <label class="block mb-2" for="editNationality">Nationality</label>
+                <input id="editNationality" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
+                    type="text" placeholder="Nationality" >
+
+                <label class="block mb-2" for="editFlag">Flag</label>
+                <input id="editFlag" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4" type="text"
+                    placeholder="Flag" >
+
+                <label class="block mb-2" for="editClub">Club</label>
+                <input id="editClub" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4" type="text"
+                    placeholder="Club" >
+
+                <label class="block mb-2" for="editLogo">Logo</label>
+                <input id="editLogo" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4" type="text"
+                    placeholder="Logo" >
+
+                <label class="block mb-2" for="editRating">Rating</label>
+                <input id="editRating" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
+                    type="number" placeholder="Rating" >
+
+                <label class="block mb-2" for="editPace">Pace</label>
+                <input id="editPace" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
+                    type="number" placeholder="Pace" >
+
+                <label class="block mb-2" for="editShooting">Shooting</label>
+                <input id="editShooting" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
+                    type="number" placeholder="Shooting" >
+
+                <label class="block mb-2" for="editPassing">Passing</label>
+                <input id="editPassing" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
+                    type="number" placeholder="Passing" >
+
+                <label class="block mb-2" for="editDribbling">Dribbling</label>
+                <input id="editDribbling" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
+                    type="number" placeholder="Dribbling" >
+
+                <label class="block mb-2" for="editDefending">Defending</label>
+                <input id="editDefending" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
+                    type="number" placeholder="Defending" >
+
+                <label class="block mb-2" for="editPhysical">Physical</label>
+                <input id="editPhysical" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
+                    type="number" placeholder="Physical" >
+
+                <div class="mt-4 flex justify-end">
+                    <button class="bg-blue-500 text-white rounded px-4 py-2" id="save">Save</button>
+                    <button class="ml-2 bg-gray-400 text-white rounded px-4 py-2"
+                        onclick="closeEditModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     
 </body>

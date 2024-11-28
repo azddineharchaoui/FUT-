@@ -13,54 +13,74 @@ let pDribbling = document.getElementById("pDribbling");
 let pDefending = document.getElementById("pDefending");
 let pPhysical = document.getElementById("pPhysical");
 
+let editName = document.getElementById("editName");
+let editPhoto = document.getElementById("editPhoto");
+let editPosition = document.getElementById("editPosition");
+let editNationality = document.getElementById("editNationality");
+let editFlag = document.getElementById("editFlag");
+let editClub = document.getElementById("editClub");
+let editLogo = document.getElementById("editLogo");
+let editRating = document.getElementById("editRating");
+let editPace = document.getElementById("editPace");
+let editShooting = document.getElementById("editShooting");
+let editPassing = document.getElementById("editPassing");
+let editDribbling = document.getElementById("editDribbling");
+let editDefending = document.getElementById("editDefending");
+let editPhysical = document.getElementById("editPhysical");
+
 let add = document.getElementById("add");
 let addPlayer = document.getElementById("addPlayer");
 let addModal = document.getElementById("addModal");
+let editModal = document.getElementById("editModal");
+
 
 //Array of players 
 let players = [];
-let counter = 0; 
-addPlayer.addEventListener('click', function(){
+let counter = 0;
+addPlayer.addEventListener('click', function () {
     addModal.classList.remove("hidden");
 })
 
 function closeAddModal() {
     addModal.classList.add("hidden");
 }
-function add_Player(name, photo, pos, nat, flag, club, logo, rat, pace, shoot, pass, dribl, def, phys, state){
+function closeEditModal() {
+    editModal.classList.add("hidden");
+}
+function add_Player(name, photo, pos, nat, flag, club, logo, rat, pace, shoot, pass, dribl, def, phys, state) {
     const player = {
-        id : counter++,
-        name : name, 
-        photo : photo, 
-        pos : pos,
-        nat : nat, 
-        flag : flag, 
-        club : club, 
-        logo : logo,
-        rat : rat,
-        pace : pace,
-        shoot : shoot,
-        pass : pass,
-        dribl : dribl,
-        def : def,
-        phys : phys,
-        is_active : state,
+        id: counter++,
+        name: name,
+        photo: photo,
+        pos: pos,
+        nat: nat,
+        flag: flag,
+        club: club,
+        logo: logo,
+        rat: rat,
+        pace: pace,
+        shoot: shoot,
+        pass: pass,
+        dribl: dribl,
+        def: def,
+        phys: phys,
+        is_active: state,
         is_taken: 1,
     };
     players.push(player);
     updateScreen();
 }
 
-add.onclick = function(){
+add.onclick = function () {
     //validation 
     add_Player(pName.value, pPhoto.value, pPosition.value, pNationality.value,
-         pFlag.value, pClub.value, pLogo.value, pRating.value, pPace.value, 
-         pShooting.value, pPassing.value, pDribbling.value, pDefending.value, pPhysical.value);
+        pFlag.value, pClub.value, pLogo.value, pRating.value, pPace.value,
+        pShooting.value, pPassing.value, pDribbling.value, pDefending.value, pPhysical.value);
     closeAddModal();
 }
 
 
-function updateScreen(){
+function updateScreen() {
     const LB = document.getElementById("LB");
     const CBL = document.getElementById("CBL");
     const CBR = document.getElementById("CBR");
@@ -72,8 +92,8 @@ function updateScreen(){
     const STL = document.getElementById("STL");
     const STR = document.getElementById("STR");
     const GK = document.getElementById("GK");
+
     
-    //clear players positions 
     LB.innerHTML = "";
     CBL.innerHTML = "";
     CBR.innerHTML = "";
@@ -126,15 +146,17 @@ function updateScreen(){
                         </div>
 
                         <div class="icons flex justify-evenly">
-                            <img src="${player.flag}" class="w-3 h-3 md:w-6 md:h-6 lg:w-8 lg:h-8"
-                                alt="flag">
-                            <img src="${player.logo}"
-                                class="w-3 h-3 md:w-6 md:h-6 lg:w-8 lg:h-8" alt="logo">
+                            <img src="${player.flag}" class="w-3 h-3 md:w-6 md:h-6 lg:w-8 lg:h-8" alt="flag">
+                            <img src="${player.logo}" class="w-3 h-3 md:w-6 md:h-6 lg:w-8 lg:h-8" alt="logo">
+                        </div>
+                        <div class="flex justify-evenly mt-2">
+                            <button class="edit bg-yellow-400 text-white px-2 py-1 text-xs" onclick="editPlayer(${player.id})">Edit</button>
+                            <button class="delete bg-red-400 text-white px-2 py-1 text-xs" onclick="deletePlayer(${player.id})">Delete</button>
                         </div>
 
         `;
 
-        switch(player.pos){
+        switch (player.pos) {
             case "LB":
                 LB.appendChild(playerElement);
                 break;
@@ -169,8 +191,56 @@ function updateScreen(){
                 GK.appendChild(playerElement);
                 break;
             default:
-                console.log(player.pos);
-                // window.alert("Invalide Position !");
+                window.alert("Invalide Position !");
+                break;
         }
     });
+}
+let save = document.getElementById("save");
+function editPlayer(id) {
+    const index = players.findIndex(p => p.id === id);
+    if (index > -1) {
+        editName.value = players[index].name;
+        editPhoto.value = players[index].photo;
+        editPosition.value = players[index].pos;
+        editNationality.value = players[index].nat;
+        editFlag.value = players[index].flag;
+        editClub.value = players[index].club;
+        editLogo.value = players[index].logo;
+        editRating.value = players[index].rat;
+        editPace.value = players[index].pace;
+        editShooting.value = players[index].shoot;
+        editPassing.value = players[index].pass;
+        editDribbling.value = players[index].dribl;
+        editDefending.value = players[index].def;
+        editPhysical.value = players[index].phys;
+
+        editModal.classList.remove("hidden");
+
+        save.onclick = function () {
+            players[index].name = editName.value;
+            players[index].photo = editPhoto.value;
+            players[index].pos = editPosition.value;
+            players[index].nat = editNationality.value;
+            players[index].flag = editFlag.value;
+            players[index].club = editClub.value;
+            players[index].logo = editLogo.value;
+            players[index].rat = editRating.value;
+            players[index].pace = editPace.value;
+            players[index].shoot = editShooting.value;
+            players[index].pass = editPassing.value;
+            players[index].dribl = editDribbling.value;
+            players[index].def = editDefending.value;
+            players[index].phys = editPhysical.value;
+
+            updateScreen();
+            closeEditModal();
+        };
+
+    }
+}
+
+function deletePlayer(id) {
+    players = players.filter(player => player.id !== id);
+    updateScreen();
 }
