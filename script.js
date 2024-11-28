@@ -47,7 +47,7 @@ function closeAddModal() {
 function closeEditModal() {
     editModal.classList.add("hidden");
 }
-function add_Player(name, photo, pos, nat, flag, club, logo, rat, pace, shoot, pass, dribl, def, phys, state) {
+function add_Player(name, photo, pos, nat, flag, club, logo, rat, pace, shoot, pass, dribl, def, phys, status) {
     const player = {
         id: counter++,
         name: name,
@@ -64,8 +64,7 @@ function add_Player(name, photo, pos, nat, flag, club, logo, rat, pace, shoot, p
         dribl: dribl,
         def: def,
         phys: phys,
-        is_active: state,
-        is_taken: 1,
+        status: status,
     };
     players.push(player);
     updateScreen();
@@ -73,12 +72,58 @@ function add_Player(name, photo, pos, nat, flag, club, logo, rat, pace, shoot, p
 
 add.onclick = function () {
     //validation 
+    const nameRegex = /^[A-Za-z\s]+$/;
+    const urlRegex = /^(https?):\/\/[^\s/$.?#].[^\s]*$/i;
+    if(pName.value.trim() === "" || pPhoto.value.trim() === "" || pPosition.value.trim() === "" || pNationality.value.trim() === "" || pFlag.value.trim() === "" || pClub.value.trim() === "" || pLogo.value.trim() === "" || pRating.value.trim() === "" || pPace.value.trim() === "" || pShooting.value.trim() === "" || pPassing.value.trim() === "" || pDribbling.value.trim() === "" || pDefending.value.trim() === "" || pPhysical.value.trim() === "" || pStatus.value.trim() === "" ){
+        window.alert("some fields are empty !");
+    }else if(!nameRegex.test(pName.value.trim())){
+        window.alert("Player name contain only letters and spaces.");
+    }else if(!nameRegex.test(pNationality.value.trim())){
+        window.alert("Player nationality contain only letters and spaces.");
+    }else if(!nameRegex.test(pClub.value.trim())){
+        window.alert("Player club contain only letters and spaces.");
+    }else if(pPosition.value !=="LB" && pPosition.value !=="CBL" && pPosition.value !=="CBR" && pPosition.value !=="RB" && pPosition.value !=="LM" && pPosition.value !=="CML" && pPosition.value !=="CMR" && pPosition.value !=="RM" && pPosition.value !=="STL" && pPosition.value !=="STR" && pPosition.value !=="GK"){
+        window.alert("Invalid Position !");
+    }else if (!urlRegex.test(pPhoto.value)) {
+        window.alert("The URL of the photo is invalid!");
+    }else if (!urlRegex.test(pFlag.value)) {
+        window.alert("The URL of the flag is invalid!");
+    }else if (!urlRegex.test(pLogo.value)) {
+        window.alert("The URL of the logo is invalid!");
+    }else if(pRating.value < 0 || pRating.value > 100 || pPace.value < 0 || pPace.value > 100 || 
+        pShooting.value < 0 || pShooting.value > 100 || pPassing.value < 0 || pPassing.value > 100 || 
+        pDribbling.value < 0 || pDribbling.value > 100 || pDefending.value < 0 || pDefending.value > 100 || 
+        pPhysical.value < 0 || pPhysical.value > 100 ){
+            window.alert("one or more statistics are wrong !");
+    }else if(pStatus.value !== "Principal" && pStatus.value !== "Echange"){
+        window.alert("Invalide Status !");
+    }
+    else{
     add_Player(pName.value, pPhoto.value, pPosition.value, pNationality.value,
         pFlag.value, pClub.value, pLogo.value, pRating.value, pPace.value,
-        pShooting.value, pPassing.value, pDribbling.value, pDefending.value, pPhysical.value);
+        pShooting.value, pPassing.value, pDribbling.value, pDefending.value, pPhysical.value, pStatus.value);
+    clearFields();
     closeAddModal();
+    }
 }
 
+function clearFields() {
+    pName.value = ""; 
+    pPhoto.value = ""; 
+    pPosition.value = "";
+    pNationality.value = "";
+    pFlag.value = "";
+    pClub.value = "";
+    pLogo.value = "";
+    pRating.value = "";
+    pPace.value = "";
+    pShooting.value = "";
+    pPassing.value = "";
+    pDribbling.value = "";
+    pDefending.value = "";
+    pPhysical.value = "";
+    pStatus.value = "";
+}
 
 function updateScreen() {
     const LB = document.getElementById("LB");
@@ -92,8 +137,8 @@ function updateScreen() {
     const STL = document.getElementById("STL");
     const STR = document.getElementById("STR");
     const GK = document.getElementById("GK");
+    const echange = document.getElementById("echange");
 
-    
     LB.innerHTML = "";
     CBL.innerHTML = "";
     CBR.innerHTML = "";
@@ -105,10 +150,11 @@ function updateScreen() {
     STL.innerHTML = "";
     STR.innerHTML = "";
     GK.innerHTML = "";
+    echange.innerHTML = "";
 
     players.forEach(player => {
         const playerElement = document.createElement("div");
-        playerElement.classList.add("h-[70px]", "w-[50px]", "md:w-[120px]", "md:h-[160px]", "lg:h-[222px]", "lg:w-[170px]", "bg-[url('img/badge_gold.png')]", "bg-contain", "bg-center", "bg-no-repeat", "flex", "flex-col");
+        // playerElement.classList.add("h-[70px]", "w-[50px]", "md:w-[120px]", "md:h-[160px]", "lg:h-[222px]", "lg:w-[170px]", "bg-[url('img/badge_gold.png')]", "bg-contain", "bg-center", "bg-no-repeat", "flex", "flex-col");
         playerElement.innerHTML = `
                         <div class="flex items-start justify-center mt-1 text-white">
                             <div class="flex flex-col mt-1 lg:mt-4">
@@ -155,44 +201,57 @@ function updateScreen() {
                         </div>
 
         `;
-
-        switch (player.pos) {
-            case "LB":
-                LB.appendChild(playerElement);
-                break;
-            case "CBL":
-                CBL.appendChild(playerElement);
-                break;
-            case "CBR":
-                CBR.appendChild(playerElement);
-                break;
-            case "RB":
-                RB.appendChild(playerElement);
-                break;
-            case "LM":
-                LM.appendChild(playerElement);
-                break;
-            case "CML":
-                CML.appendChild(playerElement);
-                break;
-            case "CMR":
-                CMR.appendChild(playerElement);
-                break;
-            case "RM":
-                RM.appendChild(playerElement);
-                break;
-            case "STL":
-                STL.appendChild(playerElement);
-                break;
-            case "STR":
-                STR.appendChild(playerElement);
-                break;
-            case "GK":
-                GK.appendChild(playerElement);
-                break;
-            default:
-                window.alert("Invalide Position !");
-                break;
+        if (player.status == "Principal") {
+            switch (player.pos) {
+                case "LB":
+                    LB.appendChild(playerElement);
+                    break;
+                case "CBL":
+                    CBL.appendChild(playerElement);
+                    break;
+                case "CBR":
+                    CBR.appendChild(playerElement);
+                    break;
+                case "RB":
+                    RB.appendChild(playerElement);
+                    break;
+                case "LM":
+                    LM.appendChild(playerElement);
+                    break;
+                case "CML":
+                    CML.appendChild(playerElement);
+                    break;
+                case "CMR":
+                    CMR.appendChild(playerElement);
+                    break;
+                case "RM":
+                    RM.appendChild(playerElement);
+                    break;
+                case "STL":
+                    STL.appendChild(playerElement);
+                    break;
+                case "STR":
+                    STR.appendChild(playerElement);
+                    break;
+                case "GK":
+                    GK.appendChild(playerElement);
+                    break;
+                default:
+                    window.alert("Invalide Position !");
+                    break;
+            }
+        } else if (player.status == "Echange") {
+            let len = echange.childNodes.length;
+            if (len >= 6) {
+                window.alert("You can't add more than 6 players in reserve zone ")
+            } else {
+                const li = document.createElement("li");
+                playerElement.classList.add("h-[70px]", "w-[50px]", "md:w-[120px]", "md:h-[160px]", "lg:h-[222px]", "lg:w-[170px]", "bg-[url('img/badge_gold.png')]", "bg-contain", "bg-center", "bg-no-repeat", "flex", "flex-col");
+                li.appendChild(playerElement);
+                echange.appendChild(li);
+            }
+        } else {
+            window.alert("invalide status ");
         }
     });
 }
@@ -214,6 +273,7 @@ function editPlayer(id) {
         editDribbling.value = players[index].dribl;
         editDefending.value = players[index].def;
         editPhysical.value = players[index].phys;
+        editStatus.value = players[index].status;
 
         editModal.classList.remove("hidden");
 
@@ -232,6 +292,8 @@ function editPlayer(id) {
             players[index].dribl = editDribbling.value;
             players[index].def = editDefending.value;
             players[index].phys = editPhysical.value;
+            players[index].status = editStatus.value;
+
 
             updateScreen();
             closeEditModal();

@@ -21,44 +21,43 @@
         </div>
     </header>
     <!-- Zone de terrain -->
-    <section id="terrain"
-        class=" bg-[url('img/stadium_background.webp')] bg-contain lg:bg-cover bg-no-repeat w-full h-[100vh] lg:w-[80vw] lg:h-[140vh] mx-auto px-12 py-6">
+    <section id="terrain" class=" bg-[url('img/stadium_background.webp')] bg-contain lg:bg-cover bg-no-repeat w-full h-[100vh] lg:w-[80vw] lg:h-[140vh] mx-auto px-12 py-6">
         <div class="players">
             <div class="grid grid-cols-4 grid-rows-3 justify-items-center gap-4">
-                <div class="col-start-1 row-start-3" id="LB">
+                <div class="col-start-1 row-start-3 h-[70px] w-[50px] md:w-[120px] md:h-[160px] lg:h-[222px] lg:w-[170px] bg-[url('img/badge_gold.png')] bg-contain bg-center bg-no-repeat flex flex-col" id="LB">
                     
                 </div>
-                <div class="col-start-2 row-start-3" id="CBL">
+                <div class="col-start-2 row-start-3 h-[70px] w-[50px] md:w-[120px] md:h-[160px] lg:h-[222px] lg:w-[170px] bg-[url('img/badge_gold.png')] bg-contain bg-center bg-no-repeat flex flex-col" id="CBL">
                    
                 </div>
-                <div class="col-start-3 row-start-3" id="CBR">
+                <div class="col-start-3 row-start-3 h-[70px] w-[50px] md:w-[120px] md:h-[160px] lg:h-[222px] lg:w-[170px] bg-[url('img/badge_gold.png')] bg-contain bg-center bg-no-repeat flex flex-col" id="CBR">
                   
                 </div>
-                <div class="col-start-4 row-start-3" id="RB">
+                <div class="col-start-4 row-start-3 h-[70px] w-[50px] md:w-[120px] md:h-[160px] lg:h-[222px] lg:w-[170px] bg-[url('img/badge_gold.png')] bg-contain bg-center bg-no-repeat flex flex-col" id="RB">
                     
                 </div>
-                <div class="col-start-1 row-start-2" id="LM">
+                <div class="col-start-1 row-start-2 h-[70px] w-[50px] md:w-[120px] md:h-[160px] lg:h-[222px] lg:w-[170px] bg-[url('img/badge_gold.png')] bg-contain bg-center bg-no-repeat flex flex-col" id="LM">
                     
                 </div>
-                <div class="col-start-2 row-start-2" id="CML">
+                <div class="col-start-2 row-start-2 h-[70px] w-[50px] md:w-[120px] md:h-[160px] lg:h-[222px] lg:w-[170px] bg-[url('img/badge_gold.png')] bg-contain bg-center bg-no-repeat flex flex-col" id="CML">
                     
                 </div>
-                <div class="col-start-3 row-start-2" id="CMR">
+                <div class="col-start-3 row-start-2 h-[70px] w-[50px] md:w-[120px] md:h-[160px] lg:h-[222px] lg:w-[170px] bg-[url('img/badge_gold.png')] bg-contain bg-center bg-no-repeat flex flex-col" id="CMR">
                     
                 </div>
-                <div class="col-start-4 row-start-2" id="RM">
+                <div class="col-start-4 row-start-2 h-[70px] w-[50px] md:w-[120px] md:h-[160px] lg:h-[222px] lg:w-[170px] bg-[url('img/badge_gold.png')] bg-contain bg-center bg-no-repeat flex flex-col" id="RM">
                     
                 </div>
-                <div class="col-start-2 row-start-1" id="STL">
+                <div class="col-start-2 row-start-1 h-[70px] w-[50px] md:w-[120px] md:h-[160px] lg:h-[222px] lg:w-[170px] bg-[url('img/badge_gold.png')] bg-contain bg-center bg-no-repeat flex flex-col" id="STL">
                     
                 </div>
-                <div class="col-start-3 row-start-1" id="STR">
+                <div class="col-start-3 row-start-1 h-[70px] w-[50px] md:w-[120px] md:h-[160px] lg:h-[222px] lg:w-[170px] bg-[url('img/badge_gold.png')] bg-contain bg-center bg-no-repeat flex flex-col" id="STR">
                     
                 </div>
             </div>
 
 
-            <div class="w-[50px] md:w-[120px] lg:w-[172px] mx-auto mt-4" id="GK">
+            <div class=" mx-auto mt-4  h-[70px] w-[50px] md:w-[120px] md:h-[160px] lg:h-[222px] lg:w-[170px] bg-[url('img/badge_gold.png')] bg-contain bg-center bg-no-repeat flex flex-col" id="GK">
                
 
             </div>
@@ -67,10 +66,10 @@
     </section>
 
     <!-- Zone de joueurs d'échange-->
-    <section id="echange" class="">
+    <section class="zoneEchange mt-16 w-full lg:w-[80vw] mx-auto ">
         <div class="w-full h-[40vh] bg-gray-400 rounded mx-auto">
             <h2 class="text-2xl font-bold text-center"> Remplacement</h2>
-            <ul class="flex ">
+            <ul class="flex justify-center" id="echange">
 
             </ul>
         </div>
@@ -149,6 +148,13 @@
                 <label class="block mb-2" for="pPhysical">Physical</label>
                 <input id="pPhysical" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
                     type="number" placeholder="Physical" >
+                
+                    <label class="block mb-2" for="pStatus">Status</label>
+                    <select id="pStatus" class="block w-full bg-gray-200 border rounded py-2 px-4">
+                        <option value="">Select the Status</option> 
+                        <option value="Principal">Principal</option>
+                        <option value="Echange">Echange</option>
+                    </select>
 
                 <div class="mt-4 flex justify-end">
                     <button class="bg-blue-500 text-white rounded px-4 py-2" id="add">Add</button>
@@ -232,6 +238,13 @@
                 <label class="block mb-2" for="editPhysical">Physical</label>
                 <input id="editPhysical" class="block w-full bg-gray-200 text-gray-700 border rounded py-2 px-4"
                     type="number" placeholder="Physical" >
+
+                    <label class="block mb-2" for="editStatus">Status</label>
+                    <select id="editStatus" class="block w-full bg-gray-200 border rounded py-2 px-4">
+                        <option value="">Select the Status</option> 
+                        <option value="Principal">Principal</option>
+                        <option value="Echange">Echange</option>
+                    </select>
 
                 <div class="mt-4 flex justify-end">
                     <button class="bg-blue-500 text-white rounded px-4 py-2" id="save">Save</button>
