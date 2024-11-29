@@ -36,7 +36,9 @@ let editModal = document.getElementById("editModal");
 
 //Array of players 
 let players = [];
-let counter = 0;
+
+fetchData();
+console.log(players);
 addPlayer.addEventListener('click', function () {
     addModal.classList.remove("hidden");
 })
@@ -49,7 +51,7 @@ function closeEditModal() {
 }
 function add_Player(name, photo, pos, nat, flag, club, logo, rat, pace, shoot, pass, dribl, def, phys, status) {
     const player = {
-        id: counter++,
+        id: Date.now(),
         name: name,
         photo: photo,
         pos: pos,
@@ -68,7 +70,52 @@ function add_Player(name, photo, pos, nat, flag, club, logo, rat, pace, shoot, p
     };
     players.push(player);
     updateScreen();
+    storeData(players);
 }
+
+function updateFields() {
+    if (pPosition.value === "GK") {
+        let labelPace = document.getElementById("labelPace");
+        let labelShooting = document.getElementById("labelShooting");
+        let labelPassing = document.getElementById("labelPassing");
+        let labelDribbling = document.getElementById("labelDribbling");
+        let labelDefending = document.getElementById("labelDefending");
+        let labelPhysical = document.getElementById("labelPhysical");
+
+        labelPace.innerText = "Diving";
+        labelShooting.innerText = "Handling";
+        labelPassing.innerText = "Kicking";
+        labelDribbling.innerText = "Reflexes";
+        labelDefending.innerText = "Speed";
+        labelPhysical.innerText = "Positioning";
+
+        pPace.id = "pDiving";
+        pShooting.id = "pHandling";
+        pPassing.id = "pKicking";
+        pDribbling.id = "pReflexes";
+        pDefending.id = "pSpeed";
+        pPhysical.id = "pPositioning";
+    } else {
+        labelPace.innerText = "Pace";
+        labelShooting.innerText = "Shooting";
+        labelPassing.innerText = "Passing";
+        labelDribbling.innerText = "Dribbling";
+        labelDefending.innerText = "Defending";
+        labelPhysical.innerText = "Physical";
+
+        pPace.id = "pPace";
+        pShooting.id = "pShooting";
+        pPassing.id = "pPassing";
+        pDribbling.id = "pDribbling";
+        pDefending.id = "pDefending";
+        pPhysical.id = "pPhysical";
+    }
+}
+
+pPosition.addEventListener('change', updateFields);
+
+updateFields();
+
 
 add.onclick = function () {
     //validation 
@@ -154,7 +201,54 @@ function updateScreen() {
 
     players.forEach(player => {
         const playerElement = document.createElement("div");
-        // playerElement.classList.add("h-[70px]", "w-[50px]", "md:w-[120px]", "md:h-[160px]", "lg:h-[222px]", "lg:w-[170px]", "bg-[url('img/badge_gold.png')]", "bg-contain", "bg-center", "bg-no-repeat", "flex", "flex-col");
+        if(player.pos === "GK"){
+            playerElement.innerHTML = `
+                        <div class="flex items-start justify-center mt-1 text-white">
+                            <div class="flex flex-col mt-1 lg:mt-4">
+                                <span class="text-[8px] md:text-lg font-bold">${player.rat}</span>
+                                <span class="text-[8px] md:text-lg">${player.pos}</span>
+                            </div>
+                            <img src="${player.photo}" class=" w-[30px] md:w-[70px] lg:w-[100px] h-auto">
+                        </div>
+                        <h4 class="text-white text-[6px] md:text-[12px] lg:text-[16px] text-center">${player.name}</h4>
+                        <div class="stats flex justify-center lg:gap-1 text-[4px] md:text-[9px] lg:text-[12px] font-bold px-1 lg:px-2">
+                            <div>
+                                <span>DIV</span>
+                                <p>${player.pace}</p>
+                            </div>
+                            <div>
+                                <span>HAN</span>
+                                <p>${player.shoot}</p>
+                            </div>
+                            <div>
+                                <span>KIC</span>
+                                <p>${player.pass}</p>
+                            </div>
+                            <div>
+                                <span>REF</span>
+                                <p>${player.dribl}</p>
+                            </div>
+                            <div>
+                                <span>SPD</span>
+                                <p>${player.def}</p>
+                            </div>
+                            <div>
+                                <span>POS</span>
+                                <p>${player.phys}</p>
+                            </div>
+                        </div>
+
+                        <div class="icons flex justify-evenly">
+                            <img src="${player.flag}" class="w-3 h-3 md:w-6 md:h-6 lg:w-8 lg:h-8" alt="flag">
+                            <img src="${player.logo}" class="w-3 h-3 md:w-6 md:h-6 lg:w-8 lg:h-8" alt="logo">
+                        </div>
+                        <div class="flex justify-evenly mt-2">
+                            <button class="edit bg-yellow-400 text-white px-2 py-1 text-xs" onclick="editPlayer(${player.id})">Edit</button>
+                            <button class="delete bg-red-400 text-white px-2 py-1 text-xs" onclick="deletePlayer(${player.id})">Delete</button>
+                        </div>
+
+        `;
+        }else{
         playerElement.innerHTML = `
                         <div class="flex items-start justify-center mt-1 text-white">
                             <div class="flex flex-col mt-1 lg:mt-4">
@@ -201,6 +295,7 @@ function updateScreen() {
                         </div>
 
         `;
+        }
         if (player.status == "Principal") {
             switch (player.pos) {
                 case "LB":
@@ -255,6 +350,7 @@ function updateScreen() {
         }
     });
 }
+
 let save = document.getElementById("save");
 function editPlayer(id) {
     const index = players.findIndex(p => p.id === id);
@@ -294,7 +390,7 @@ function editPlayer(id) {
             players[index].phys = editPhysical.value;
             players[index].status = editStatus.value;
 
-
+            storeData(players);
             updateScreen();
             closeEditModal();
         };
@@ -304,5 +400,18 @@ function editPlayer(id) {
 
 function deletePlayer(id) {
     players = players.filter(player => player.id !== id);
+    storeData(players);
     updateScreen();
+}
+
+function storeData(array) {
+    window.localStorage.setItem("players", JSON.stringify(array));
+}
+
+function fetchData() {
+    let data = window.localStorage.getItem("players");
+    if (data) {
+        players = JSON.parse(data);
+        updateScreen();
+    }
 }
