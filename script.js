@@ -299,40 +299,95 @@ function updateScreen() {
         if (player.status == "Principal") {
             switch (player.pos) {
                 case "LB":
-                    LB.appendChild(playerElement);
+                    if (LB.childElementCount === 0) {  
+                        LB.appendChild(playerElement);
+                    } else {
+                        window.alert("The position is already occupied");
+                        deletePlayer(player.id);
+                    }
                     break;
                 case "CBL":
-                    CBL.appendChild(playerElement);
+                    if (CBL.childElementCount === 0) {
+                        CBL.appendChild(playerElement);
+                    } else {
+                        window.alert("The position is already occupied");
+                        deletePlayer(player.id);
+                    }
                     break;
                 case "CBR":
-                    CBR.appendChild(playerElement);
+                    if (CBR.childElementCount === 0) {
+                        CBR.appendChild(playerElement);
+                    } else {
+                        window.alert("The position is already occupied");
+                        deletePlayer(player.id);
+                    }
                     break;
                 case "RB":
-                    RB.appendChild(playerElement);
+                    if (RB.childElementCount === 0) {
+                        RB.appendChild(playerElement);
+                    } else {
+                        window.alert("The position is already occupied");
+                        deletePlayer(player.id);
+                    }
                     break;
                 case "LM":
-                    LM.appendChild(playerElement);
+                    if (LM.childElementCount === 0) {
+                        LM.appendChild(playerElement);
+                    } else {
+                        window.alert("The position is already occupied");
+                        deletePlayer(player.id);
+                    }
                     break;
                 case "CML":
-                    CML.appendChild(playerElement);
+                    if (CML.childElementCount === 0) {
+                        CML.appendChild(playerElement);
+                    } else {
+                        window.alert("The position is already occupied");
+                        deletePlayer(player.id);
+                    }
                     break;
                 case "CMR":
-                    CMR.appendChild(playerElement);
+                    if (CMR.childElementCount === 0) {
+                        CMR.appendChild(playerElement);
+                    } else {
+                        window.alert("The position is already occupied");
+                        deletePlayer(player.id);
+                    }
                     break;
                 case "RM":
-                    RM.appendChild(playerElement);
+                    if (RM.childElementCount === 0) {
+                        RM.appendChild(playerElement);
+                    } else {
+                        window.alert("The position is already occupied");
+                        deletePlayer(player.id);
+                    }
                     break;
                 case "STL":
-                    STL.appendChild(playerElement);
+                    if (STL.childElementCount === 0) {
+                        STL.appendChild(playerElement);
+                    } else {
+                        window.alert("The position is already occupied");
+                        deletePlayer(player.id);
+                    }
                     break;
                 case "STR":
-                    STR.appendChild(playerElement);
+                    if (STR.childElementCount === 0) {
+                        STR.appendChild(playerElement);
+                    } else {
+                        window.alert("The position is already occupied");
+                        deletePlayer(player.id);
+                    }
                     break;
                 case "GK":
-                    GK.appendChild(playerElement);
+                    if (GK.childElementCount === 0) {
+                        GK.appendChild(playerElement);
+                    } else {
+                        window.alert("The position is already occupied");
+                        deletePlayer(player.id);
+                    }
                     break;
                 default:
-                    window.alert("Invalide Position !");
+                    window.alert("Invalide position !");
                     break;
             }
         } else if (player.status == "Echange") {
