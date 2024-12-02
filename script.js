@@ -119,7 +119,7 @@ updateFields();
 
 add.onclick = function () {
     //validation 
-    const nameRegex = /^[A-Za-z\s]+$/;
+    const nameRegex = /^[A-Za-z\s'-]+$/;
     const urlRegex = /^(https?):\/\/[^\s/$.?#].[^\s]*$/i;
     if(pName.value.trim() === "" || pPhoto.value.trim() === "" || pPosition.value.trim() === "" || pNationality.value.trim() === "" || pFlag.value.trim() === "" || pClub.value.trim() === "" || pLogo.value.trim() === "" || pRating.value.trim() === "" || pPace.value.trim() === "" || pShooting.value.trim() === "" || pPassing.value.trim() === "" || pDribbling.value.trim() === "" || pDefending.value.trim() === "" || pPhysical.value.trim() === "" || pStatus.value.trim() === "" ){
         window.alert("some fields are empty !");
@@ -243,8 +243,8 @@ function updateScreen() {
                             <img src="${player.logo}" class="w-3 h-3 md:w-6 md:h-6 lg:w-8 lg:h-8" alt="logo">
                         </div>
                         <div class="flex justify-evenly mt-2">
-                            <button class="edit bg-yellow-400 text-white px-2 py-1 text-xs" onclick="editPlayer(${player.id})">Edit</button>
-                            <button class="delete bg-red-400 text-white px-2 py-1 text-xs" onclick="deletePlayer(${player.id})">Delete</button>
+                            <button class="edit bg-yellow-400 text-white px-2 py-1 text-[4px] lg:text-xs" onclick="editPlayer(${player.id})">Edit</button>
+                            <button class="delete bg-red-400 text-white px-2 py-1 text-[4px] lg:text-xs" onclick="deletePlayer(${player.id})">Delete</button>
                         </div>
 
         `;
@@ -290,8 +290,8 @@ function updateScreen() {
                             <img src="${player.logo}" class="w-3 h-3 md:w-6 md:h-6 lg:w-8 lg:h-8" alt="logo">
                         </div>
                         <div class="flex justify-evenly mt-2">
-                            <button class="edit bg-yellow-400 text-white px-2 py-1 text-xs" onclick="editPlayer(${player.id})">Edit</button>
-                            <button class="delete bg-red-400 text-white px-2 py-1 text-xs" onclick="deletePlayer(${player.id})">Delete</button>
+                            <button class="edit bg-yellow-400 text-white px-2 py-1 text-[4px] lg:text-xs" onclick="editPlayer(${player.id})">Edit</button>
+                            <button class="delete bg-red-400 text-white px-2 py-1 text-[4px] lg:text-xs" onclick="deletePlayer(${player.id})">Delete</button>
                         </div>
 
         `;
